@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { CONFIG_DIR } from "./config.ts";
 
 const THEME_FILE = "material_black_simple.json";
 
@@ -16,8 +17,8 @@ function resolveThemePath(): string {
   const here = dirname(fileURLToPath(import.meta.url));
   const candidates = [
     join(here, "../../themes", THEME_FILE), // published package layout
-    join(homedir(), ".pi/agent/themes", THEME_FILE), // hand-installed
-    join(homedir(), ".pi/cc/themes", THEME_FILE),
+    join(homedir(), CONFIG_DIR, "agent/themes", THEME_FILE), // hand-installed
+    join(homedir(), CONFIG_DIR, "cc/themes", THEME_FILE),
   ];
   return candidates.find((p) => existsSync(p)) ?? candidates[1];
 }

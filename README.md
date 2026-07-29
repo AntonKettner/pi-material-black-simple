@@ -70,7 +70,8 @@ intermediate-bg          intermediate-font-color
 ```
 
 Example: `/material-black-simple final-output-bg #1565c0`. Values are stored in
-`~/.pi/material-black-simple.json`; `status` lists the current ones.
+`~/.pi/material-black-simple.json` (or the equivalent config dir of a rebranded
+pi build); `status` lists the current ones.
 
 Everything else - tool titles and output, diffs, syntax highlighting, borders,
 markdown - is plain pi theme configuration and lives in
@@ -98,6 +99,31 @@ directory, which arrives unpatched. pi has no install hook, so the extension
 re-checks on each cold start and repairs it, then asks you to restart. This means
 **the first session after an upgrade renders unpatched** - the module is already
 loaded by the time the check runs.
+
+## Development
+
+```
+npm install
+npm run check      # tsc --noEmit
+```
+
+The package ships TypeScript sources directly - pi loads extensions through
+`jiti`, so there is no build step. `@earendil-works/pi-coding-agent` is a
+dev-only dependency: the extension imports `CONFIG_DIR_NAME` and the
+`ExtensionAPI` type from it, both of which resolve against the host pi install
+at runtime.
+
+Layout:
+
+```
+extensions/material-black-simple/
+  index.ts     # default export: registers session_start hook + /material-black-simple
+  config.ts    # ~/.pi/material-black-simple.json read/write, colour keys
+  patch.ts     # locate pi installs, apply/revert the renderer patch
+  opacity.ts   # pre-blend theme backgrounds against the page background
+themes/
+  material_black_simple.json
+```
 
 ## License
 

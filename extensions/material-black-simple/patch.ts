@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
-import { THEME_NAME } from "./config.ts";
+import { CONFIG_DIR, THEME_NAME } from "./config.ts";
 
 const REL = "dist/modes/interactive/components/assistant-message.js";
 const REL_MODE = "dist/modes/interactive/interactive-mode.js";
@@ -54,7 +54,7 @@ const MODE_INJECT = `                    this.streamingComponent.updateContent(t
 const HELPER_ANCHOR = "export class AssistantMessageComponent extends Container {";
 const HELPERS = `import { createRequire as __mbsCreateRequire } from "node:module";
 const __mbsRequire = __mbsCreateRequire(import.meta.url);
-const __mbsConfigPath = __mbsRequire("node:path").join(__mbsRequire("node:os").homedir(), ".pi", "material-black-simple.json");
+const __mbsConfigPath = __mbsRequire("node:path").join(__mbsRequire("node:os").homedir(), ${JSON.stringify(CONFIG_DIR)}, "material-black-simple.json");
 let __mbsCache = { at: 0, value: { overlay: false } };
 function __mbsConfig() {
     const now = Date.now();
@@ -143,7 +143,7 @@ export function findTargets(): string[] {
   }
 
   for (const dir of ["agent", "cc"]) {
-    const pkg = join(homedir(), ".pi", dir, "node_modules/@earendil-works/pi-coding-agent");
+    const pkg = join(homedir(), CONFIG_DIR, dir, "node_modules/@earendil-works/pi-coding-agent");
     if (existsSync(join(pkg, REL))) roots.add(pkg);
   }
 

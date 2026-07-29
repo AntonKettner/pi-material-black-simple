@@ -29,6 +29,10 @@ export default function assistantBg(pi: ExtensionAPI) {
     // Only on a cold start: reloads and session switches can't change the install.
     if (event.reason !== "startup") return;
 
+    // Print/JSON modes have no UI: the theme switch and patch notices would be
+    // silently dropped, and patching an install nobody is looking at is rude.
+    if (!ctx.hasUI) return;
+
     // First run: create the config and switch to the theme this package ships.
     const firstRun = !configExists();
     if (firstRun) {
@@ -59,6 +63,12 @@ export default function assistantBg(pi: ExtensionAPI) {
 
   pi.registerCommand("material-black-simple", {
     description: "restart | status | revert | bg-opacity | overlay | <colour> <hex> - manage material_black_simple",
+    getArgumentCompletions: (prefix) => {
+      const items = ["restart", "status", "revert", "bg-opacity", "overlay", ...COLOR_KEYS]
+        .filter((v) => v.startsWith(prefix))
+        .map((value) => ({ value, label: value }));
+      return items.length > 0 ? items : null;
+    },
     handler: async (args, ctx) => {
       const arg = args.trim();
 

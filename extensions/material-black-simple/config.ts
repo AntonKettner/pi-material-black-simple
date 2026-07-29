@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
+import { CONFIG_DIR_NAME } from "@earendil-works/pi-coding-agent";
 
 export const THEME_NAME = "material_black_simple";
 
@@ -11,7 +12,9 @@ export const THEME_NAME = "material_black_simple";
  * cannot import from the extension). Keeping it in ~/.pi means it is shared by
  * every profile that uses the same binary.
  */
-export const CONFIG_PATH = join(homedir(), ".pi", "material-black-simple.json");
+export const CONFIG_DIR = CONFIG_DIR_NAME;
+
+export const CONFIG_PATH = join(homedir(), CONFIG_DIR, "material-black-simple.json");
 
 export interface Config {
   /** Apply the highlighting even when another theme is active. */

@@ -1,13 +1,42 @@
 {
   "name": "pi-material-black-simple",
   "version": "0.1.0",
-  "description": "Material-black theme for the pi coding agent, with distinct backgrounds for user messages and final assistant answers",
+  "description": "Material black theme for the pi coding agent - near-black UI, green user messages, and a highlighted final answer so you can see where a run ended at a glance.",
   "type": "module",
   "license": "MIT",
-  "keywords": ["pi", "pi-coding-agent", "pi-theme", "pi-extension", "theme"],
+  "keywords": [
+    "pi",
+    "pi-package",
+    "pi-coding-agent",
+    "pi-theme",
+    "pi-extension",
+    "theme",
+    "dark-theme",
+    "material",
+    "tui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonKettner/pi-material-black-simple.git"
+  },
+  "homepage": "https://github.com/AntonKettner/pi-material-black-simple#readme",
+  "bugs": {
+    "url": "https://github.com/AntonKettner/pi-material-black-simple/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "pi": {
     "extensions": ["extensions/material-black-simple/index.ts"],
     "themes": ["themes/material_black_simple.json"]
   },
-  "files": ["extensions", "themes", "README.md"]
+  "files": ["extensions", "themes", "README.md", "LICENSE"],
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.82.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
 }
