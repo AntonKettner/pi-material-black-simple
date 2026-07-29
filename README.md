@@ -10,6 +10,8 @@ A dark theme for the [pi coding agent](https://github.com/badlogic/pi-mono), bui
 | **Assistant final answer** | **white on blue background** |
 | Run recap / summary | blue text, no background |
 
+![material_black_simple in Ghostty](assets/material-black-simple.png)
+
 ## Install
 
 ```

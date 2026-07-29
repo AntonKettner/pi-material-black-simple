@@ -28,7 +28,8 @@
   },
   "pi": {
     "extensions": ["extensions/material-black-simple/index.ts"],
-    "themes": ["themes/material_black_simple.json"]
+    "themes": ["themes/material_black_simple.json"],
+    "image": "https://raw.githubusercontent.com/AntonKettner/pi-material-black-simple/main/assets/material-black-simple.png"
   },
   "files": ["extensions", "themes", "README.md", "LICENSE"],
   "scripts": {
