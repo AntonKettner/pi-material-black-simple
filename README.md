@@ -18,6 +18,13 @@ pi package add npm:pi-material-black-simple
 
 Then pick the theme with `/theme`, and restart pi once so the patch below takes effect.
 
+## Plays well with
+
+Developed and daily-driven in [Ghostty](https://ghostty.org), alongside:
+
+- [pi-sticky-usermessage](https://pi.dev/packages/pi-sticky-usermessage) - keeps the current user message pinned while the run scrolls
+- [pi-rewind](https://github.com/arpagon/pi-rewind) - jump back to an earlier point in the session
+
 ## The patch
 
 pi's theme schema has no key for an assistant-message background, and no way to
