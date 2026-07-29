@@ -1,0 +1,13 @@
+{
+  "name": "pi-material-black-simple",
+  "version": "0.1.0",
+  "description": "Material-black theme for the pi coding agent, with distinct backgrounds for user messages and final assistant answers",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["pi", "pi-coding-agent", "pi-theme", "pi-extension", "theme"],
+  "pi": {
+    "extensions": ["extensions/material-black-simple/index.ts"],
+    "themes": ["themes/material_black_simple.json"]
+  },
+  "files": ["extensions", "themes", "README.md"]
+}
